@@ -84,6 +84,9 @@ namespace habilitations2024.controller
         {
             developpeurAccess.UpdatePwd(developpeur);
         }
-
-    }
+        public List<Developpeur> GetLesDeveloppeurs(Profil profil)
+        {
+            return developpeurAccess.GetLesDeveloppeurs(profil);
+        }
+            }
 }
