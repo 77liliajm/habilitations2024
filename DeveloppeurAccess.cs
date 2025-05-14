@@ -198,6 +198,40 @@ namespace habilitations2024.dal
                     Environment.Exit(0);
                 }
             }
+            public List<Developpeur> GetLesDeveloppeurs(Profil profil)
+            {
+                List<Developpeur> lesDeveloppeurs = new List<Developpeur>();
+                if (access.Manager != null)
+                {
+                    string req = "select d.iddeveloppeur, d.nom, d.prenom, d.tel, d.mail, p.idprofil, p.nom " +
+                                 "from developpeur d join profil p on d.idprofil = p.idprofil " +
+                                 "where p.nom = @nom order by d.nom, d.prenom;";
+                    Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "@nom", profil.Nom }
+                    };
+                    try
+                    {
+                        List<Object[]> records = access.Manager.ReqSelect(req, parameters);
+                        if (records != null)
+                        {
+                            foreach (Object[] record in records)
+                            {
+                                Profil prof = new Profil((int)record[5], (string)record[6]);
+                                Developpeur dev = new Developpeur((int)record[0], (string)record[1], (string)record[2],
+                                                                  (string)record[3], (string)record[4], prof);
+                                lesDeveloppeurs.Add(dev);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Environment.Exit(0);
+                    }
+                }
+                return lesDeveloppeurs;
+            }
         }
 
     }
