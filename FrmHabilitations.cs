@@ -33,7 +33,7 @@ namespace habilitations2024.view
         /// Controleur de la fenêtre
         /// </summary>
         private FrmHabilitationsController controller;
-
+        private BindingSource bdgFiltreProfils = new  BindingSource();
         /// <summary>
         /// construction des composants graphiques et appel des autres initialisations
         /// </summary>
@@ -54,8 +54,38 @@ namespace habilitations2024.view
             RemplirListeProfils();
             EnCourseModifDeveloppeur(false);
             EnCoursModifPwd(false);
+            RemplirFiltreProfils();
+        }
+        private void RemplirFiltreProfils()
+        {
+            List<Profil> lesProfils = controller.GetLesProfils();
+            List<Profil> listeAvecVide = new List<Profil> { new Profil(0, "") };
+            listeAvecVide.AddRange(lesProfils);
+        
+            bdgFiltreProfils.DataSource = listeAvecVide;
+            cbxFiltreProfil.DataSource = bdgFiltreProfils;
+            cbxFiltreProfil.DisplayMember = "Nom";
+        }
+        private void cbxFiltreProfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Profil profil = (Profil)cbxFiltreProfil.SelectedItem;
+        
+            List<Developpeur> devs;
+            if (profil.Nom == "")
+            {
+                devs = controller.GetLesDeveloppeurs();
+            }
+            else
+            {
+                devs = controller.GetLesDeveloppeurs(profil);
         }
 
+    bdgDeveloppeurs.DataSource = devs;
+    dgvDeveloppeurs.DataSource = bdgDeveloppeurs;
+    dgvDeveloppeurs.Columns["iddeveloppeur"].Visible = false;
+    dgvDeveloppeurs.Columns["pwd"].Visible = false;
+    dgvDeveloppeurs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+}
         /// <summary>
         /// Affiche les développeurs
         /// </summary>
