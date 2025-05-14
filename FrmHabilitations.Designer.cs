@@ -26,6 +26,8 @@
         /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
         /// le contenu de cette méthode avec l'éditeur de code.
         /// </summary>
+        private System.Windows.Forms.ComboBox cbxFiltreProfil;
+        private System.Windows.Forms.Label lblFiltreProfil;
         private void InitializeComponent()
         {
             this.label7 = new System.Windows.Forms.Label();
@@ -57,6 +59,24 @@
             this.grbDeveloppeur.SuspendLayout();
             this.grbLesDeveloppeurs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeveloppeurs)).BeginInit();
+            // lblFiltreProfil
+            this.lblFiltreProfil = new System.Windows.Forms.Label();
+            this.lblFiltreProfil.AutoSize = true;
+            this.lblFiltreProfil.Location = new System.Drawing.Point(20, 20);
+            this.lblFiltreProfil.Name = "lblFiltreProfil";
+            this.lblFiltreProfil.Size = new System.Drawing.Size(80, 13);
+            this.lblFiltreProfil.Text = "Filtrer par profil";
+            // cbxFiltreProfil
+            this.cbxFiltreProfil = new System.Windows.Forms.ComboBox();
+            this.cbxFiltreProfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxFiltreProfil.Location = new System.Drawing.Point(110, 17);
+            this.cbxFiltreProfil.Name = "cbxFiltreProfil";
+            this.cbxFiltreProfil.Size = new System.Drawing.Size(180, 21);
+            this.cbxFiltreProfil.SelectedIndexChanged += new System.EventHandler(this.cbxFiltreProfil_SelectedIndexChanged);
+
+            // Ajout des contrôles
+            this.Controls.Add(this.lblFiltreProfil);
+            this.Controls.Add(this.cbxFiltreProfil);
             this.SuspendLayout();
             // 
             // label7
