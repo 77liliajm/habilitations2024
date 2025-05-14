@@ -73,7 +73,6 @@
             this.cbxFiltreProfil.Name = "cbxFiltreProfil";
             this.cbxFiltreProfil.Size = new System.Drawing.Size(180, 21);
             this.cbxFiltreProfil.SelectedIndexChanged += new System.EventHandler(this.cbxFiltreProfil_SelectedIndexChanged);
-
             // Ajout des contrôles
             this.Controls.Add(this.lblFiltreProfil);
             this.Controls.Add(this.cbxFiltreProfil);
